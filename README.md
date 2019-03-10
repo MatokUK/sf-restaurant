@@ -16,7 +16,7 @@ If you have any questions, let me know.
 # Solution
 Application is based on Symfony 3.4 (stable long-term support version) with Symfony Flex bundle. You can try live demo. Use technologies:
 * database: Doctrine
-* UI: bootstrap (most basic) and valina JS for ajax search
+* UI: bootstrap (most basic) and vanilla JS for ajax search
 
 ## Installation
 ```
