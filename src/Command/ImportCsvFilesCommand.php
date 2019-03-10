@@ -44,7 +44,7 @@ class ImportCsvFilesCommand extends Command
     {
         $output->writeln("Import command is running");
 
-        if ($input->getOptions('truncate')) {
+        if ($input->getOption('truncate')) {
             $output->writeln('<comment>Truncating data...</comment>');
             $this->restaurantRepository->deleteAll();
         }
@@ -86,8 +86,6 @@ class ImportCsvFilesCommand extends Command
         foreach ($csvReader->readLines() as $line) {
             $restaurant = $type->createRestaurant($line);
             $this->entityManager->persist($restaurant);
-            //var_dump($restaurant);
-         //   exit;
         }
     }
 }
