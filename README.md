@@ -97,3 +97,4 @@ TDD is my way of coding - I created several tests.
 ## Final words
  * I don't use paginator in listing (only limit to 100 records), but in real application I definitely paginate results
  * I have got obstacles with times like **5:30 pm - 2 am**, because 2 am overlaps to next day, so I split such intervals in two: "to midnight" and "after midnight"
+ * you can see few "Haskelish" like array_map, yield that are typical in this kind of task :) 
