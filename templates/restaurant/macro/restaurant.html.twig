@@ -1,0 +1,24 @@
+{% macro is_open(restaurant) %}
+    {% if restaurant.isopen %}yes{% else %}no{% endif %}
+{% endmacro %}
+
+{% macro opening_hours(restaurant) %}
+    {% import _self as macro %}
+    <dl>
+    {% for i in 1..7 %}
+        <dt>{{ macro.day_name(i) }}:</dt>
+        <dd>{%- for int in restaurant.openingIntervals  -%}
+            {%- if int.dayInWeek == i -%}
+                <span class="restaurant-hours">{{ int.openAt|date('H:i') }} - {{ int.closeAt|date('H:i') }}</span>
+            {%- endif -%}
+        {%- endfor -%}
+        </dd>
+    {% endfor %}
+    </dl>
+{% endmacro %}
+
+{%- macro day_name(day_number) -%}
+    {%- set days = {1: 'Mo', 2: 'Tu', 3: 'We', 4: 'Th', 5: 'Fr', 6: 'Su', 7: 'Sa'} -%}
+
+    {{ days[day_number] }}
+{%- endmacro -%}

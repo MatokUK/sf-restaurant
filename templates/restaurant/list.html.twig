@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% import "restaurant/macro/restaurant.html.twig" as restaurant_macro %}
+
+    {% form_theme search_form 'bootstrap_4_layout.html.twig' %}
+
+
+    {{ form_start(search_form) }}
+    <div class="container">
+        <div class="row">
+            <div class="col-1">
+                <div class="spinner-border text-danger js-search-spinner" role="status" style="display: none">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+            <div class="col">
+                {{ form_widget(search_form.search) }}
+            </div>
+            <div class="col">
+                {{ form_row(search_form.closed) }}
+            </div>
+            <div class="col">
+                <a href="{{ url('index') }}">reset search</a>
+            </div>
+        </div>
+    </div>
+
+        {{ form_rest(search_form) }}
+    {{ form_end(search_form) }}
+
+    <div id="restaurant-table">
+        {% include "restaurant/table.html.twig" %}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/search.js') }}"></script>
+{% endblock %}
