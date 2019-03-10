@@ -19,7 +19,7 @@ var restaurantAjax = {
             spinner.style.display = 'none';
         };
 
-        xhr.open('GET', '/search?s=' + searchTerm + '&closed=' + includeClosed);
+        xhr.open('GET', window.location.pathname + 'search?s=' + searchTerm + '&closed=' + includeClosed);
         xhr.send();
     }
 };
