@@ -1,3 +1,13 @@
+function debounce(callback, delay = 100) {
+    var timeout;
+    return function(...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            callback.apply(this, args);
+        }, delay);
+    };
+}
+
 var restaurantAjax = {
     search: function() {
         var searchForm = document.getElementById('search_form');
@@ -34,11 +44,11 @@ var restaurantSearch = {
           this.searchTerm = searchForm.elements['search_restaurant[search]'];
           this.includeClosed = searchForm.elements['search_restaurant[closed]'];
 
-          this.searchTerm.addEventListener('keyup', function(e) {
+          this.searchTerm.addEventListener('keyup', debounce(function(e) {
               if (e.target.value.length > 1) {
                 restaurantAjax.search();
               }
-          });
+          }, 500));
 
           this.includeClosed.addEventListener('change', function (e) {
               restaurantAjax.search();
